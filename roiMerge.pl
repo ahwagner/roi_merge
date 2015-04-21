@@ -13,6 +13,8 @@ my %coordinates;
 my $last_chr = '';
 my $last_start;
 my $line = 0;
+
+# Parse bed file and merge by gene identifier
 while (<BED>){
 	chomp;
 	$line += 1;
@@ -39,6 +41,7 @@ while (<BED>){
 	}
 }
 
+# Sort output
 my @rows;
 foreach my $gene (keys %coordinates){
 	while(@{$coordinates{$gene}{'contig'}}){
@@ -51,6 +54,7 @@ foreach my $gene (keys %coordinates){
 
 @rows = sort bed @rows;
 
+# Print
 foreach (@rows) {
 	print join("\t", @{$_})."\n";
 }
