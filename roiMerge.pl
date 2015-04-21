@@ -45,9 +45,9 @@ while (<BED>){
 my @rows;
 foreach my $gene (keys %coordinates){
 	while(@{$coordinates{$gene}{'contig'}}){
-		my $hchr = pop $coordinates{$gene}{'contig'};
-		my $hstart = pop $coordinates{$gene}{'start'};
-		my $hstop = pop $coordinates{$gene}{'stop'};
+		my $hchr = pop @{$coordinates{$gene}{'contig'}};
+		my $hstart = pop @{$coordinates{$gene}{'start'}};
+		my $hstop = pop @{$coordinates{$gene}{'stop'}};
 		push(@rows, [$hchr, $hstart, $hstop, $gene]);
 	}
 }
